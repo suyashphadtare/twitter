@@ -1,0 +1,191 @@
+
+{% extends 'twitter_app/base.html' %}
+
+{% load staticfiles %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		    	<ul class="nav nav-pills">
+				  <li role="presentation"><a href="#">Home</a></li>
+				  <li role="presentation"><a href="#">Notifications</a></li>
+				  <li role="presentation"><a href="#">Messages</a></li>
+				</ul>
+		    </div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<input type="text" class="form-control search" placeholder="Search Twitter"></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">Suyash Phadtare</a>
+								<small class="metadata">View Profile</small>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Help</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Settings</a></li>
+							<li><a href="#">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+		    </div><!-- /.navbar-collapse -->
+		
+		</div><!-- /.container-fluid -->
+		</nav>
+	</div>
+</div>
+
+<div class="row dp-container">
+	<div class="col-md-2 img-class">
+		<a href="#" class="thumbnail">
+      		<img src="{% static 'twitter_app/images/profile.jpg' %}" alt="Profile Image" class="profile-img">
+    	</a>
+	</div>
+	<div class="col-md-10 user-dp"></div>
+</div>
+
+<div class="profile-navbar row navbar navbar-default">
+		<div class="col-md-offset-4 col-md-4">
+		<ul class="list-inline">
+		<li class="tweet-list">
+			<a href="#">
+				<span class="li-label">TWEETS</span>
+				<span class="li-value">12,234</span>
+			</a>
+		</li>
+		<li class="tweet-list">
+			<a href="#">
+				<span class="li-label">FOLLOWING</span>
+				<span class="li-value">101</span>
+			</a>
+		</li>
+		<li class="tweet-list">
+			<a href="#">
+				<span class="li-label">FOLLOWERS</span>
+				<span class="li-value">33234</span>
+			</a>
+		</li>
+		<li class="tweet-list">
+			<a href="#">
+				<span class="li-label">LIKES</span>
+				<span class="li-value">234</span>
+			</a>
+		</li>
+	</ul>
+	</div>
+	<div class="col-md-offset-2 col-md-2">
+		<button type="button" class="btn btn-primary" id="tweet-post" 
+				user-id="{{ tweets.0.user.id_str }}" data-toggle="modal"
+				data-target="#myModal">Tweet</button>
+	</div>
+</div>
+
+<div class="row page-body">
+	<div class="col-md-2">
+		<div class="panel panel-info">
+		<div class="panel-heading">{{ tweets.0.user.name }}</div>
+			<div class="panel-body">
+				<p>Blogger, Coder, 
+				Full time hypothesizer, Part time Meglomanic & Autodidact
+				</p>
+				<div>Joined 10 oct 2014</div>
+				<div>Lives In India</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="col-md-7">
+	{% for tweet in tweets %}
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="tweet-header">
+					<a href="#" class="thumbnail">
+      					<img src="{{ tweet.user.profile_image_url }}" alt="Profile Image" class="profile-thumbnail">
+    				</a>
+				</div>
+				<div class="tweet-header">
+					<strong>
+						{{ tweet.user.name }}
+					</strong>
+				</div>
+				<div class="tweet-header ago">
+					{{ tweet.created_at }}
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-1">
+					</div>
+					<div class="col-md-10">
+						<p>{{ tweet.text }}</p>		
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}		
+	</div>
+	<div class="col-md-3">
+		<div class="row">
+			<div class="panel panel-info">
+			<div class="panel-heading">Whom To Follow</div>
+				<div class="panel-body">
+					<div class="list-group">
+					  <button type="button" class="list-group-item">@AmirKhan</button>
+					  <button type="button" class="list-group-item">@iamsrk</button>
+					  <button type="button" class="list-group-item">@SalmanKhan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		<div class="panel panel-info">
+			<div class="panel-heading">Trends</div>
+				<div class="panel-body">
+					<div class="list-group">
+					  <button type="button" class="list-group-item">@INDvsENG</button>
+					  <button type="button" class="list-group-item">@KOHLI</button>
+					  <button type="button" class="list-group-item">@10 Days to Raees</button>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+
+</div>
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Tweet Message</h4>
+      </div>
+      <div class="modal-body">
+        	<div class="form-group">
+  				<label for="comment">Message:</label>
+  				<textarea class="form-control" rows="5" id="comment"></textarea>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="tweet">Tweet</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="{% static 'twitter_app/js/show_tweets.js' %}"></script>
+{% endblock %}

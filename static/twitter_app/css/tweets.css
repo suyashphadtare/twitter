@@ -1,0 +1,73 @@
+.search {
+	margin: 7px 15px 0 0;
+	border-radius: 5px;
+}
+
+.metadata{
+	padding-left: 40px;
+}
+
+.user-dp{
+	background-color: #333D80;
+	min-height:150px;
+}
+
+.dp-container{
+	margin-top: 0px;
+}
+
+.li-label{
+	display: block;
+}
+
+.li-value{
+	display: block;
+}
+
+.profile-img{
+	max-height:140px;
+}
+
+.thumbnail{
+	margin-bottom: 0px;
+}
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+.profile-navbar{
+	background-color: #FDFEFE;
+}
+
+.img-class{
+	padding-right: 0px;
+}
+
+.tweet-list{
+	margin: 5px 10px 0px 10px;	
+}
+
+.page-body{
+	margin: 10px 20px 10px 20px;
+}
+
+.tweet-header{
+	display: inline-block;
+}
+
+.ago{
+	float:right;
+}
+
+.profile-thumbnail{
+	max-height: 20px;
+}
+
+.panel-info>.panel-heading{
+	background-color: #c1e8ff;
+}
+
+#tweet-post{
+	margin-top: 10px;
+}

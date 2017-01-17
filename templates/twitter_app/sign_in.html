@@ -1,0 +1,15 @@
+{% extends 'twitter_app/base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+	<div class="row text-center" style="margin-top:300px">
+		<button type="button" class="btn btn-info btn-lg" id="sign_in">Sign in Using Twitter</button>
+	</div>
+	<script src="{% static 'twitter_app/js/sign_in.js' %}"></script>
+</div>
+{% endblock %}
+
+
+
+
